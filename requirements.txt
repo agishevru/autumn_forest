@@ -1,0 +1,2 @@
+pygame==2.1.2
+simple-draw==2.8.0
