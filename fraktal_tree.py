@@ -1,9 +1,11 @@
+""" Модуль содержит класс Forest(x,y), который рекурсивно отрисовывает дерево """
 import simple_draw as sd
 
 
-def point_list():
-    """  Создает координаты для деревьев. Плотная версия."""
-
+def point_list() -> list:
+    """  Создает координаты для деревьев по всей площади. Плотная версия.
+        :return: [[x1, y1], [x2, y2]..]
+    """
     point_list = []
     for i in range(-100, 701, 200):
 
@@ -22,7 +24,7 @@ def point_list():
         for num in range(len(list_x)):
             point_list.append((list_x[num], list_y[num]))
 
-        return point_list
+    return point_list
 
 
 class Forest:
@@ -35,9 +37,9 @@ class Forest:
         self.root_point = sd.get_point(x, y)
         self.initial_width = sd.random_number(4, 12)
         self.dread = sd.circle(center_position=sd.get_point(self.root_point.x + 1, self.root_point.y),
-                            radius=int(self.initial_width / 2),
-                            color=sd.COLOR_BLACK,
-                            width=0)
+                               radius=int(self.initial_width / 2),
+                               color=sd.COLOR_BLACK,
+                               width=0)
         self.root = sd.get_vector(start_point=self.root_point, angle=90, length=sd.random_number(50, 100),
                                   width=self.initial_width)
         self.root.draw(color=sd.COLOR_BLACK)
@@ -76,11 +78,13 @@ class Forest:
             self.draw_bunches(start_point=next_point, angle_s=next_angle, length=next_length, delta=delta,
                               width=next_width, color_sheet=color_sheet)
 
+
 if __name__ == '__main__':
     sd.resolution = (1920, 1032)
     sd.background_color = ('white')
 
     coordinates = point_list()
+
     for point in coordinates:
         tree = Forest(point[0], point[1])
 

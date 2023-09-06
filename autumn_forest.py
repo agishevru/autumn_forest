@@ -5,10 +5,10 @@ import simple_draw as sd
 from simple_draw import *
 
 import world
-from fraktal_tree import Forest
+from fraktal_tree import Forest, point_list
 from snow import Snow
 
-
+# задается размер окна и цвет фона
 sd.caption = 'autumn forest'
 sd.resolution = (1920, 1032)
 sd.background_color = ('white')
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     w.sky(300000)
     w.cultivate(density=2000)
 
-    draw_random_trees(5)
-    s = Snow(100)
+    draw_random_trees(50)
+
 
     sd.pause()

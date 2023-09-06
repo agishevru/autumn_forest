@@ -1,46 +1,54 @@
 Autumn forest
 =============
 
-Autumn forest - Простая библиотека для отрисовки осеннего леса через функционал PyGame и Simple-draw в частности.
+Autumn forest - Простая библиотека для отрисовки осеннего леса через функционал `PyGame` и `Simple-draw` в частности.
+Все настройки уже заданы, нужно только запустить `autumn_forest.py`. Откроется окно с постепенной отрисовкой пейзажа.
 
 Установка
 ---------
 Создайте виртуальное окружение и активируйте его. Потом в виртуальном окружении выполните:
-
+```shell
     pip install -r requiremtents.txt
+```
 
-1. Сначала рисуется трава и небо через класс World модуля world.py . Создается экземпляр класса с цветовыми схемами для травы и неба:
+1. Сначала рисуется трава и небо через класс `World` модуля `world.py`:
+   - Создается экземпляр класса с цветовыми схемами для травы и неба:
+   ```python
+    w = world.World(color_list1=world.color_list_gras_green, # лист с названиями цветов для зеленой травы 
+                    color_list2=world.color_list_gras_brown, # лист с названиями цветов для коричневой травы 
+                    color_list3=world.color_list_sky)        # лист с названиями цветов для неба 
+   ```
+   - Запускается отрисовка неба и травы методами `World.sky` и `World.cultivate`. На вход указывается количество элементов(плотность):
+   ```python
+    w.sky(300000)
+    w.cultivate(density=2000)
+   ```
 
-        w = world.World(color_list1= world.color_list_gras_green,
-                    color_list2=world.color_list_gras_brown,
-                    color_list3=world.color_list_sky)
+2. Потом создается лес через функцию, генерирующую случайные координаты для каждого дерева - `draw_random_trees(num_trees)`.
+Внутри которой создается экземпляр класса `Forest` из модуля `fraktal_tree.py`. Он запускает отрисовку дерева со случайными 
+характеристиками:
 
-    Далее запускается отрисовка неба и травы методами sky и cultivate. На вход указывается количество элементов(плотность):
-
-        w.sky(300000)
-        w.cultivate(density=2000)
-
-2. Потом создается лес через функцию draw_random_trees(num_trees) и класс Forest из модуля fraktal_tree.py :
-
-
-        def draw_random_trees(num_trees):
-        """ Рисует в рандомных точках деревья. Принимает количество деревьев"""
+   ```python
+   def draw_random_trees(num_trees):
+       """ Рисует в рандомных точках деревья. Принимает количество деревьев"""
+       for _ in range(num_trees):
+           root_x = random.randint(100, sd.resolution[0]-100)
+           root_y = random.randint(0, 800)
+           tree = Forest(root_x, root_y)
     
-        for _ in range(num_trees):
-            root_x = random.randint(100, sd.resolution[0]-100)
-            root_y = random.randint(0, 800)
-            tree = Forest(root_x, root_y)
-    
-        draw_random_trees(5)
+   draw_random_trees(5)
+   ```
 
-3. Теперь запускаем снег с помощью модуля snow.py и класса Snow. Указываем на вход количество снежинок:
-    
-        s = Snow(100)
+3. Теперь запускаем снег с помощью класса `Snow` из модуля `snow.py`. Указываем на вход количество снежинок:
 
+```python
+   s = Snow(100) # генерирует 100 случайных снежинок с анимацией падения
+```
 Запуск
 ------
 В активированном виртуальном окружении запустите:
-
+```shell
     autumn_forest.py
+```
 
 Откроется окно с последовательной вырисовкой всех элементов. Если окно свернуть и развернуть, функции отрисуются быстрее.

@@ -1,3 +1,4 @@
+""" Модуль содержит класс World, который отрисовывает траву и небо. """
 import simple_draw as sd
 
 # списки цветовых шаблонов
@@ -62,7 +63,7 @@ class World:
                 next_length = length * (.75 + length_random)
                 self.draw_grass(start_point=next_point, angle_s=next_angle, length=next_length, color=color)
 
-    def sky(self, density):
+    def sky(self, density: int):
         """ Рисует небо. Принимает количество мазков. """
         for _ in range(density):
             rndm_radius = sd.random_number(1,2)
@@ -75,10 +76,8 @@ class World:
                       color=sd.choice(self.color3),
                       width=0)
 
-    def cultivate(self, density):
-        """ Запуск отрисовки травы в случайных точках и точечного грунта вокруг. На вход указывается количество кустов:
-        density: int
-        """
+    def cultivate(self, density: int):
+        """ Запуск отрисовки травы в случайных точках и точечного грунта вокруг. На вход указывается количество кустов. """
 
         # трава
         for n in range(density):
